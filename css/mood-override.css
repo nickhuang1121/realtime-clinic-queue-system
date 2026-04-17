@@ -1,0 +1,436 @@
+:root {
+    --page-bg: #f6f0ff;
+    --page-bg-soft: #eef8ff;
+    --ink: #111215;
+    --muted-ink: #5b6170;
+    --card: rgba(255, 255, 255, 0.95);
+    --line: rgba(17, 18, 21, 0.08);
+    --shadow: 0 24px 60px rgba(71, 63, 104, 0.14);
+    --lime: #baff8f;
+    --mint: #c5ffd7;
+    --peach: #ffcbab;
+    --coral: #ff9e8d;
+    --lavender: #e6c4ff;
+    --sky: #bedbff;
+    --sun: #ffe678;
+    --panel-radius: 36px;
+    --block-radius: 28px;
+    --pill-radius: 999px;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 8% 10%, rgba(255, 202, 214, 0.95), transparent 18%),
+        radial-gradient(circle at 88% 12%, rgba(217, 200, 255, 0.9), transparent 22%),
+        radial-gradient(circle at 82% 86%, rgba(201, 247, 255, 0.75), transparent 18%),
+        linear-gradient(180deg, var(--page-bg) 0%, #f9f6ff 38%, var(--page-bg-soft) 100%);
+}
+
+.app-layout {
+    gap: clamp(24px, 3vw, 38px);
+    padding: clamp(18px, 4vw, 48px);
+    align-items: stretch;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    background: transparent;
+}
+
+.patient-panel,
+.admin-panel {
+    align-content: start;
+    gap: 16px;
+}
+
+.panel-title {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4.1rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    color: var(--ink);
+}
+
+.patient-panel-content,
+.admin-actions {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.patient-panel-content {
+    gap: 20px;
+    align-items: stretch;
+    justify-content: start;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+.patient-panel-content::before,
+.admin-actions::before {
+    content: "";
+    position: absolute;
+    inset: auto auto -38px -30px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: rgba(186, 255, 143, 0.42);
+    filter: blur(12px);
+    pointer-events: none;
+}
+
+.patient-panel-content::after,
+.admin-actions::after {
+    content: "";
+    position: absolute;
+    inset: 20px 18px auto auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgba(230, 196, 255, 0.46);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.patient-number-form,
+.current-number-card,
+.patient-state-card,
+.admin-actions-detail,
+.admin-action-panel,
+.admin-logs-panel {
+    position: relative;
+    z-index: 1;
+}
+
+.patient-number-form {
+    padding: 22px;
+    gap: 12px;
+    grid-template-columns: 1fr auto;
+    border-radius: var(--block-radius);
+    background: linear-gradient(140deg, var(--lavender), #ffd9f1 58%, #fff1b8 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.patient-number-label {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.patient-number-field {
+    min-height: 58px;
+    padding: 0 18px;
+    border: 2px solid rgba(17, 18, 21, 0.08);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.88);
+    font-size: 1.15rem;
+    color: var(--ink);
+}
+
+.patient-number-field:focus {
+    outline: none;
+    border-color: rgba(17, 18, 21, 0.26);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.55);
+}
+
+.patient-number-btn,
+.admin-action-button {
+    min-height: 58px;
+    padding: 14px 22px;
+    border: 0;
+    border-radius: 22px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    box-shadow: 0 12px 24px rgba(16, 17, 20, 0.12);
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.patient-number-btn:hover,
+.admin-action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px rgba(16, 17, 20, 0.16);
+}
+
+.patient-number-btn {
+    min-width: 92px;
+    color: #fff;
+    background: #111215;
+}
+
+.current-number-card {
+    display: grid;
+    gap: 14px;
+    padding: 24px 26px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, var(--lime), var(--mint));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+.current-number-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: left;
+    color: rgba(17, 18, 21, 0.75);
+    letter-spacing: 0.02em;
+}
+
+.current-number-value {
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-size: clamp(5rem, 14vw, 11rem);
+    line-height: 0.88;
+    letter-spacing: -0.08em;
+    color: var(--ink);
+}
+
+.patient-state-card {
+    gap: 14px;
+    padding: 24px;
+    margin-top: 0;
+    border-radius: 32px;
+    background: linear-gradient(140deg, #fff0b8, #ffd9c8 52%, #f0d2ff 100%);
+}
+
+.patient-state-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-align: left;
+    color: rgba(17, 18, 21, 0.82);
+}
+
+.patient-state-title span {
+    margin-left: 8px;
+    font-size: 1.3em;
+    color: var(--ink);
+}
+
+.patient-state-display {
+    margin: 0;
+    padding: 18px 20px;
+    border-radius: 24px;
+    background: #111215;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    line-height: 1.25;
+    color: #fff;
+}
+
+.patient-skipped-number {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.patient-skipped-number span,
+.admin-actions-skipped-number span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 54px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: var(--pill-radius);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: inset 0 0 0 1px rgba(17, 18, 21, 0.08);
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.admin-actions {
+    gap: 22px;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.93));
+}
+
+.admin-actions-title {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    text-align: left;
+}
+
+.admin-actions-content {
+    gap: 18px;
+    padding: 0;
+}
+
+.admin-actions-detail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.admin-actions-current-number,
+.admin-actions-last-number,
+.admin-actions-skipped-number {
+    padding: 18px 20px;
+    border-radius: 26px;
+    background: rgba(248, 248, 255, 0.95);
+    box-shadow: inset 0 0 0 1px var(--line);
+    color: rgba(17, 18, 21, 0.76);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.admin-actions-current-number {
+    background: linear-gradient(145deg, var(--sky), #dff5ff);
+}
+
+.admin-actions-last-number {
+    background: linear-gradient(145deg, var(--lavender), #f6d8ff);
+}
+
+.admin-actions-skipped-number {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    grid-column: 1 / -1;
+    background: linear-gradient(145deg, #fff2ba, #ffe1ba);
+}
+
+.admin-actions-detail strong {
+    margin-left: 10px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: var(--ink);
+}
+
+.admin-action-panel {
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-action-button {
+    background: rgba(255, 255, 255, 0.96);
+}
+
+#call-next-button {
+    background: linear-gradient(145deg, var(--lime), #d8ffc1);
+}
+
+#call-next-twice-button {
+    background: linear-gradient(145deg, var(--lavender), #efd6ff);
+}
+
+#skip-current-button {
+    background: linear-gradient(145deg, var(--peach), #ffd7b3);
+}
+
+#call-skip-number-button {
+    background: linear-gradient(145deg, var(--sky), #d7edff);
+}
+
+#login-google-button {
+    background: linear-gradient(145deg, #ffffff, #f5f5f8);
+}
+
+#logout-button {
+    background: linear-gradient(145deg, #111215, #343643);
+    color: #fff;
+}
+
+.admin-action-button--danger,
+#reset-queue-button {
+    background: linear-gradient(145deg, var(--coral), #ffb49f);
+    color: var(--ink);
+}
+
+.admin-logs-panel {
+    padding: 20px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #fefefe, #fff3d8);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.admin-logs-panel h3 {
+    margin: 0 0 14px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--ink);
+}
+
+.logs {
+    gap: 12px;
+    max-height: 360px;
+    overflow: auto;
+    padding-right: 6px;
+}
+
+.logs li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: baseline;
+    padding: 14px 16px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: inset 0 0 0 1px rgba(17, 18, 21, 0.05);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.logs small {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--muted-ink);
+}
+
+@media (max-width: 980px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .panel-title {
+        font-size: 2.2rem;
+    }
+
+    .patient-panel-content,
+    .admin-actions {
+        padding: 20px;
+        border-radius: 26px;
+    }
+
+    .patient-number-form,
+    .admin-action-panel,
+    .admin-actions-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .patient-number-btn,
+    .admin-action-button {
+        width: 100%;
+    }
+
+    .current-number-card,
+    .patient-state-card,
+    .admin-logs-panel {
+        border-radius: 24px;
+    }
+
+    .logs li {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mood-override.css">
+</head>
+
+<body>
+
+    <div class="fix-window" id="fix-window">
+        <div class="fix-window-message">
+            <p id="message">EEEEEE</p>
+            <button class="close-message" id="close-message">
+                關閉
+            </button>
+        </div>
+    </div>
+    <div id="app" class="app-layout">
+        <section class="patient-panel">
+            <h2 class="panel-title">病人視窗</h2>
+
+            <div class="patient-panel-content">
+
+
+                <div class="patient-number-form">
+                    <label class="patient-number-label" for="patient-number-input">請輸入您的號碼:</label>
+                    <input class="patient-number-field" type="number" id="patient-number-input">
+                    <button class="patient-number-btn" id="patient-number-btn">確定</button>
+                </div>
+
+                <div class="current-number-card">
+                    <h3 class="current-number-title">目前叫到號碼</h3>
+                    <div class="current-number-value" id="patient-current-number-display">0</div>
+                </div>
+
+                <div class="patient-state-card">
+                    <h3 class="patient-state-title">您的號碼:<span id="patient-number"></span></h3>
+                    <div class="patient-state-display" id="patient-state-display">連接中...</div>
+                    <h3 class="patient-state-title">已過號名單:<div class="patient-skipped-number"
+                            id="patient-skipped-number"></div>
+                    </h3>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section class="admin-panel">
+            <h2 class="panel-title">診所管理端</h2>
+
+            <div class="admin-actions">
+
+                <h3 class="admin-actions-title">診所叫號管理</h3>
+                <div class="admin-actions-content">
+                    <div class="admin-actions-detail">
+                        <div class="admin-actions-current-number">目前叫號<strong
+                                id="admin-actions-current-number">0</strong>
+                        </div>
+                        <div class="admin-actions-last-number">最後叫號
+                            <strong id="admin-actions-last-number">0</strong>
+                        </div>
+                        <div class="admin-actions-skipped-number">
+                            目前過號
+                            <strong id="admin-actions-skipped-number"></strong>
+                        </div>
+                    </div>
+
+
+                    <div class="admin-action-panel">
+
+
+                        <button class="admin-action-button" id="call-next-button">+1下一號</button>
+                        <button class="admin-action-button" id="call-next-twice-button">+2下兩號</button>
+                        <button class="admin-action-button" id="skip-current-button">儲存過號</button>
+                        <button class="admin-action-button" id="call-skip-number-button">叫過號</button>
+                        <!-- <button class="admin-action-button admin-action-button--danger"
+                            id="reset-queue-button">reset</button>
+                        <button class="admin-action-button" id="login-google-button">登入</button>
+                        <button class="admin-action-button" id="logout-button">登出</button> -->
+                    </div>
+                    <div class="admin-auth-row">
+                        <button class="admin-action-button admin-action-button--danger"
+                            id="reset-queue-button">重置資料</button>
+                        <button class="admin-action-button" id="login-google-button">登入</button>
+                        <button class="admin-action-button" id="logout-button">登出</button>
+                    </div>
+
+                    <div class="admin-logs-panel">
+                        <h3>更新紀錄</h3>
+                        <ul id="logs" class="logs"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="scripts/main.js">
+
+    </script>
+</body>
+
+</html>
