@@ -74,7 +74,7 @@ export class UI {
     }
 
     onChangeCurrent(data) {
-        console.log(data)
+        // console.log(data)
         this.displayCurrentNumber(data.currentNumber);
         this.displaySkippedList(data.skippedNumber);
         this.displayAdminLastNumber(data.lastNormalNumber);
